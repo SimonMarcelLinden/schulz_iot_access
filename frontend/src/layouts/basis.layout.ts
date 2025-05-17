@@ -1,24 +1,24 @@
-import { defineComponent, defineAsyncComponent, ref, type Ref, type DefineComponent } from "vue";
+import { defineComponent, defineAsyncComponent, ref, type Ref, type DefineComponent } from 'vue';
 
 // Stores
 
 // composables
-import { useResize } from "@/layouts/composables/useResize";
+import { useResize } from '@/layouts/composables/use-resize';
 
 // Types
 
 // Components
-import Notifications from "@/components/Notifications/notifications.vue";
+import Notifications from '@/components/notifications/notifications.vue';
 
 // Templates
 type BasisLayoutType = DefineComponent<{}, { isOnline: Ref<boolean> }, {}>;
 
 const BasisLayout: BasisLayoutType = defineComponent({
-	name: "BasisLayout",
+	name: 'BasisLayout',
 	components: {
 		Notifications,
-		NetworkStatusBanner: defineAsyncComponent(() => import("@/components/NetworkStatusBanner/NetworkStatusBanner.component.vue")),
-		AppLayout: defineAsyncComponent(() => import("@/layouts/app.layout.vue")),
+		NetworkStatusBanner: defineAsyncComponent(() => import('@/components/network-status-banner/network-status-banner.vue')),
+		AppLayout: defineAsyncComponent(() => import('@/layouts/app.layout.vue')),
 	},
 	setup() {
 		const isOnline = ref(navigator.onLine);

@@ -1,16 +1,16 @@
-import { defineComponent, onMounted, computed, ref } from "vue";
-import { useRouter } from "vue-router";
+import { defineComponent, onMounted, computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
-import type { TableColumn } from "@/components/Table/_types/column";
-import type { TableMeta } from "@/components/Table/_types/meta";
-import type { TableParams } from "@/components/Table/_types/params";
+import type { TableColumn } from '@/components/table/_types/column';
+import type { TableMeta } from '@/components/table/_types/meta';
+import type { TableParams } from '@/components/table/_types/params';
 
-import { getAllLogRecords } from "@/_utils/log/IndexedDBService";
+import { getAllLogRecords } from '@/_utils/log/indexed-db-service';
 
 // Components
-import Widget from "@/components/Widget/widget.vue";
-import Table from "@/components/Table/table.vue";
-import { useSystemStore } from "@/store/system/index.store";
+import Widget from '@/components/widget/widget.vue';
+import Table from '@/components/table/table.vue';
+import { useSystemStore } from '@/store/system/index';
 
 interface LogRecord {
 	filename: string;
@@ -19,7 +19,7 @@ interface LogRecord {
 }
 
 export default defineComponent({
-	name: "Dashboard",
+	name: 'Dashboard',
 	components: { Widget, Table },
 	setup() {
 		const systemStore = useSystemStore();
@@ -32,10 +32,10 @@ export default defineComponent({
 		const meta = ref<TableMeta>({ totalElements: 0, totalPages: 0, from: 0, to: 0 });
 
 		const columns: TableColumn[] = [
-			{ key: "filename", label: "Filename", sortable: true },
-			{ key: "date", label: "Datum", sortable: true },
-			{ key: "view", label: "", sortable: false, slot: "view" },
-			{ key: "action", label: "", sortable: false, slot: "action" },
+			{ key: 'filename', label: 'Filename', sortable: true },
+			{ key: 'date', label: 'Datum', sortable: true },
+			{ key: 'view', label: '', sortable: false, slot: 'view' },
+			{ key: 'action', label: '', sortable: false, slot: 'action' },
 		];
 
 		async function loadLogs() {
@@ -49,7 +49,7 @@ export default defineComponent({
 			const slice = rawLogs.value.slice(0, 6);
 			logs.value = slice.map((r) => ({
 				filename: r.filename,
-				date: r.timestamp.split("T")[0],
+				date: r.timestamp.split('T')[0],
 			}));
 
 			meta.value = {

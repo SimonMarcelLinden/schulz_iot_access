@@ -38,8 +38,8 @@
 
 <script lang="ts">
 
-export { default } from './Footer'
+export { default } from './footer'
 
 </script>
 
-<style src="./Footer.scss"></style>
+<style src="./footer.scss"></style>

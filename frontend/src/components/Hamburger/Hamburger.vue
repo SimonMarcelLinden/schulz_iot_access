@@ -18,8 +18,8 @@
 
 <script lang="ts">
 
-export { default } from './Hamburger'
+export { default } from './hamburger'
 
 </script>
 
-<style src="./Hamburger.scss"></style>
+<style src="./hamburger.scss"></style>

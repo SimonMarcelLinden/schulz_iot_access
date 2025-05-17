@@ -1,12 +1,12 @@
-import { defineComponent, computed, ref, watch, nextTick, provide, onMounted, onUnmounted } from "vue";
+import { defineComponent, computed, ref, watch, nextTick, provide, onMounted, onUnmounted } from 'vue';
 
-import { useSystemStore } from "@/store/system/index.store";
-import { useSerialIncoming } from "@/pages/Terminal/composables/useSerialIncoming";
+import { useSystemStore } from '@/store/system/index';
+import { useSerialIncoming } from '@/pages/terminal/composables/use-serial-incoming';
 
 // Components
 
 export default defineComponent({
-	name: "Terminal",
+	name: 'Terminal',
 	components: {},
 	setup(props) {
 		const systemStore = useSystemStore();

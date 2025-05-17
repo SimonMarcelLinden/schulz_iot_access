@@ -1,8 +1,8 @@
-import { defineComponent, computed, reactive } from "vue";
-import { useToast, Toast } from "@/_utils/composables/useToast";
+import { defineComponent, computed, reactive } from 'vue';
+import { useToast, Toast } from '@/_utils/composables/use-toast';
 
 export default defineComponent({
-	name: "Notifications",
+	name: 'Notifications',
 	setup() {
 		// Toast-Store
 		const { toasts, removeToast } = useToast();
@@ -30,29 +30,29 @@ export default defineComponent({
 					acc[pos] = toasts.filter((t) => t.position === pos);
 					return acc;
 				},
-				{} as Record<string, Toast[]>,
-			),
+				{} as Record<string, Toast[]>
+			)
 		);
 
 		// Map Position → Transition-Name
 		function getTransitionName(pos: string) {
 			switch (pos) {
-				case "top-center":
-					return "slide-down";
-				case "top-left":
-					return "slide-right";
-				case "top-right":
-					return "slide-left";
-				case "bottom-center":
-					return "slide-up";
-				case "bottom-left":
-					return "slide-up-right";
-				case "bottom-right":
-					return "slide-up-left";
-				case "center":
-					return "fade";
+				case 'top-center':
+					return 'slide-down';
+				case 'top-left':
+					return 'slide-right';
+				case 'top-right':
+					return 'slide-left';
+				case 'bottom-center':
+					return 'slide-up';
+				case 'bottom-left':
+					return 'slide-up-right';
+				case 'bottom-right':
+					return 'slide-up-left';
+				case 'center':
+					return 'fade';
 				default:
-					return "fade";
+					return 'fade';
 			}
 		}
 

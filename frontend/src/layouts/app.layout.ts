@@ -1,21 +1,21 @@
-import { defineComponent, defineAsyncComponent, computed, reactive, ref, type Ref, type DefineComponent } from "vue";
+import { defineComponent, defineAsyncComponent, computed, reactive, ref, type Ref, type DefineComponent } from 'vue';
 // Stores
-import { useAppStore } from "@/store/app.store";
+import { useAppStore } from '@/store/app';
 
 // composables
-import { useDevice } from "@/_utils/composables/useDevice";
+import { useDevice } from '@/_utils/composables/use-device';
 
 // Types
 
 // Components
-import NavigationBar from "@/components/NavigationBar/NavigationBar.vue";
-import Sidebar from "@/components/Sidebar/sidebar.vue";
-import Footer from "@/components/Footer/Footer.vue";
+import NavigationBar from '@/components/navigation-bar/navigation-bar.vue';
+import Sidebar from '@/components/sidebar/sidebar.vue';
+import Footer from '@/components/footer/footer.vue';
 
 type AppLayoutType = DefineComponent<{}, {}, {}>;
 
 const AppLayout: AppLayoutType = defineComponent({
-	name: "AppLayout",
+	name: 'AppLayout',
 	components: {
 		NavigationBar,
 		Sidebar,

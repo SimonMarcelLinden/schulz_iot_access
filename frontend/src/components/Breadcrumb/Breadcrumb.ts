@@ -22,11 +22,9 @@
  * @since 1.0.0
  */
 
-import { defineComponent, ref, onMounted } from "vue";
-import type { RouteRecordRaw } from "vue-router";
-import { useRoute, useRouter } from "vue-router";
-import { useRouteListener } from "@/_utils/composables/useRouteListener";
-import { compile } from "path-to-regexp";
+import { defineComponent, ref, onMounted } from 'vue';
+import type { RouteRecordRaw } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 /**
  * Ein einzelner Breadcrumb-Eintrag.
@@ -36,7 +34,7 @@ import { compile } from "path-to-regexp";
 type Crumb = { text: string; to: string };
 
 export default defineComponent({
-	name: "Breadcrumb",
+	name: 'Breadcrumb',
 	setup() {
 		/// Aktuelle Route (reagiert auf Änderungen)
 		const route = useRoute();
@@ -73,7 +71,7 @@ export default defineComponent({
 
 				// 1a) Beschriftung: bei SingleFile den Dateinamen nehmen
 				let text = (rr.meta as any).title as string;
-				if (currentName === "SingleFile" && route.params.filename) {
+				if (currentName === 'SingleFile' && route.params.filename) {
 					text = String(route.params.filename);
 				}
 

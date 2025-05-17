@@ -8,25 +8,25 @@
  * such as logging status, WLAN status, system version and available log files.
  */
 
-import "./assets/main.css";
+import './assets/main.css';
 
-import { createApp } from "vue";
-import { pinia } from "@/store/index";
-import { usePWA } from "./registerSW";
+import { createApp } from 'vue';
+import { pinia } from '@/store/index';
+import { usePWA } from './register-sw';
 
-import App from "./app.main.vue";
-import { router } from "./router";
+import App from './app.vue';
+import { router } from './router';
 
 // Services
-import { SocketService } from "./_service/socket";
+import { SocketService } from './_service/socket';
 
 // Stores
-import { useSystemStore } from "@/store/system/index.store";
+import { useSystemStore } from '@/store/system/index';
 
 // Helpers and services
-import { hookConsole } from "@/_utils/hooks/console-hock";
+import { hookConsole } from '@/_utils/hooks/console-hock';
 
-import "@/assets/main.css";
+import '@/assets/main.css';
 
 /**
  * Main entry point of the Vue application.
@@ -57,7 +57,7 @@ app.use(pinia);
 app.use(router);
 
 app.config.errorHandler = (err, vm, info) => {
-	console.error("UNHANDLED VUE ERROR:", err, info);
+	console.error('UNHANDLED VUE ERROR:', err, info);
 };
 
 /**
@@ -67,7 +67,7 @@ app.config.errorHandler = (err, vm, info) => {
  * - Here, the application is mounted to the 'body' element.
  */
 router.isReady().then(() => {
-	app.mount("#app");
+	app.mount('#app');
 	SocketService.connect();
 	const systemStore = useSystemStore();
 	systemStore.setRoutes();
@@ -75,6 +75,6 @@ router.isReady().then(() => {
 	usePWA();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-	console.log("✅ Ready to take off 🚀");
+document.addEventListener('DOMContentLoaded', () => {
+	console.log('✅ Ready to take off 🚀');
 });

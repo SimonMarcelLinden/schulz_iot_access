@@ -1,7 +1,7 @@
-import type { LayoutsConfig } from "@/layouts/_config";
-import type { ThemeName } from "utils/composables/useTheme";
-import type { NavbarClosed, NavbarOpened } from "utils/constants/app-key";
-import { CacheKey } from "@/_utils/constants/cache-key";
+import type { LayoutsConfig } from '@/layouts/_config';
+import type { ThemeName } from '@/_utils/composables/use-theme';
+import type { NavbarClosed, NavbarOpened } from 'utils/constants/app-key';
+import { CacheKey } from '@/_utils/constants/cache-key';
 
 /**
  * Holt die gespeicherte Layout-Konfiguration aus dem `localStorage`.
@@ -12,7 +12,7 @@ export function getLayoutsConfig(): LayoutsConfig | null {
 	try {
 		return json ? (JSON.parse(json) as LayoutsConfig) : null;
 	} catch (error) {
-		console.error("Fehler beim Parsen von LayoutsConfig:", error);
+		console.error('Fehler beim Parsen von LayoutsConfig:', error);
 		return null;
 	}
 }

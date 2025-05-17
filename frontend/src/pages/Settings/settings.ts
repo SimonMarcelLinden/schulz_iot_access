@@ -1,8 +1,8 @@
 // src/pages/Settings/settings.ts
-import { defineComponent, ref, computed, onMounted, onUnmounted, watch } from "vue";
-import { useSystemStore } from "@/store/system/index.store";
-import { loadSavedNetworks, scanNetworks, connectToNetwork } from "@/_service/systemWifiService";
-import Modal from "@/components/Modal/modal.vue";
+import { defineComponent, ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { useSystemStore } from '@/store/system/index';
+import { loadSavedNetworks, scanNetworks, connectToNetwork } from '@/_service/system-wifi-service';
+import Modal from '@/components/modal/modal.vue';
 
 interface WifiNetwork {
 	ssid: string;
@@ -12,7 +12,7 @@ interface WifiNetwork {
 }
 
 export default defineComponent({
-	name: "Settings",
+	name: 'Settings',
 	components: { Modal },
 	setup() {
 		const systemStore = useSystemStore();
@@ -30,7 +30,7 @@ export default defineComponent({
 
 		// Andere Netzwerke = gescannte minus gespeicherte minus aktuelles
 		const otherNetworks = computed(() =>
-			scannedNetworks.value.filter((n) => n.ssid !== currentSSID.value && !systemStore.wlan.savedNetworks.some((s) => s.ssid === n.ssid)),
+			scannedNetworks.value.filter((n) => n.ssid !== currentSSID.value && !systemStore.wlan.savedNetworks.some((s) => s.ssid === n.ssid))
 		);
 
 		let scanInterval: number | undefined;
@@ -46,7 +46,7 @@ export default defineComponent({
 				ssid: n.ssid,
 				security: n.security,
 				rssi: n.rssi ?? 0,
-				channel: n.channel ?? "",
+				channel: n.channel ?? '',
 			}));
 			loadingScannedNetworks.value = false;
 		}
@@ -73,12 +73,12 @@ export default defineComponent({
 
 		// Modal‐Flow für neue Netze
 		const passwordModalVisible = ref(false);
-		const selectedSSID = ref("");
-		const password = ref("");
+		const selectedSSID = ref('');
+		const password = ref('');
 
 		function openPasswordModal(ssid: string) {
 			selectedSSID.value = ssid;
-			password.value = "";
+			password.value = '';
 			passwordModalVisible.value = true;
 		}
 
@@ -93,9 +93,9 @@ export default defineComponent({
 		}
 
 		// Toggle WLAN / Logging
-		async function onToggleCheckbox(field: "logging" | "wlan", ev: Event) {
+		async function onToggleCheckbox(field: 'logging' | 'wlan', ev: Event) {
 			const checked = (ev.target as HTMLInputElement).checked;
-			if (field === "wlan") {
+			if (field === 'wlan') {
 				systemStore.wlan.connection.status = checked;
 				if (checked) {
 					await getSaved();
@@ -126,7 +126,7 @@ export default defineComponent({
 				} else {
 					stopAutoScan();
 				}
-			},
+			}
 		);
 
 		return {

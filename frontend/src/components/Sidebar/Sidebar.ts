@@ -19,19 +19,19 @@
  * @since 1.0.0
  */
 
-import { defineComponent, ref, computed } from "vue";
-import { useRoute } from "vue-router";
-import type { RouteRecordRaw } from "vue-router";
+import { defineComponent, ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
+import type { RouteRecordRaw } from 'vue-router';
 
 // Stores
-import { useAppStore } from "@/store/app.store";
-import { useSystemStore } from "@/store/system/index.store";
+import { useAppStore } from '@/store/app';
+import { useSystemStore } from '@/store/system/index';
 
 // Composables
-import { useToast } from "@/_utils/composables/useToast";
+import { useToast } from '@/_utils/composables/use-toast';
 
 // Components
-import Logo from "@/components/logo/logo.components.vue";
+import Logo from '@/components/logo/logo.vue';
 
 /**
  * Typ für gruppierte Routen in der Sidebar.
@@ -42,7 +42,7 @@ interface RouteGroup {
 }
 
 export default defineComponent({
-	name: "Sidebar",
+	name: 'Sidebar',
 	components: {
 		Logo,
 	},
@@ -78,7 +78,7 @@ export default defineComponent({
 		 * @param e Maus-Event
 		 */
 		function onDevClick(e: MouseEvent) {
-			if ((e.target as HTMLElement).closest("a")) return;
+			if ((e.target as HTMLElement).closest('a')) return;
 			if (devMode.value) return;
 
 			clickCount.value++;
@@ -100,18 +100,18 @@ export default defineComponent({
 					resetTimer = null;
 				}
 				showToast({
-					key: "dev-mode",
+					key: 'dev-mode',
 					message: `Dev-Mode aktiviert!`,
-					type: "success",
-					position: "bottom-center",
+					type: 'success',
+					position: 'bottom-center',
 					duration: TIMEOUT_MS,
 				});
 			} else {
 				showToast({
-					key: "dev-mode",
+					key: 'dev-mode',
 					message: `Noch ${remaining} Klick(s) bis Dev-Mode!`,
-					type: "info",
-					position: "bottom-center",
+					type: 'info',
+					position: 'bottom-center',
 					duration: TIMEOUT_MS,
 				});
 			}
@@ -137,13 +137,13 @@ export default defineComponent({
 		const sortedRoutes = computed<RouteGroup[]>(() => {
 			const map = new Map<string, RouteRecordRaw[]>();
 			for (const r of filteredRoutes.value) {
-				const grp = typeof r.meta?.group === "string" ? r.meta.group : "";
+				const grp = typeof r.meta?.group === 'string' ? r.meta.group : '';
 				if (!map.has(grp)) map.set(grp, []);
 				map.get(grp)!.push(r);
 			}
 			const result: RouteGroup[] = [];
-			if (map.has("")) {
-				result.push({ group: "", items: map.get("")! });
+			if (map.has('')) {
+				result.push({ group: '', items: map.get('')! });
 			}
 			for (const [group, items] of map.entries()) {
 				if (group) {
@@ -161,8 +161,8 @@ export default defineComponent({
 		 * @returns Klassen-String
 		 */
 		function linkClasses(r: RouteRecordRaw) {
-			const base = "bg-white ease-soft-in-out flex items-center mx-4 my-0 px-4 py-2 text-sm transition-all whitespace-nowrap";
-			const active = "active xl:shadow-soft-xl rounded-lg font-semibold text-slate-700";
+			const base = 'bg-white ease-soft-in-out flex items-center mx-4 my-0 px-4 py-2 text-sm transition-all whitespace-nowrap';
+			const active = 'active xl:shadow-soft-xl rounded-lg font-semibold text-slate-700';
 			return route.path === r.path ? `${base} ${active}` : base;
 		}
 
@@ -172,8 +172,8 @@ export default defineComponent({
 		 * @returns Klassen-String
 		 */
 		function iconWrapperClasses(r: RouteRecordRaw) {
-			const base = "shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white";
-			const active = "stroke-none shadow-soft-sm bg-gradient-to-tl from-blue-700 to-blue-500 p-2.5 text-white";
+			const base = 'shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white';
+			const active = 'stroke-none shadow-soft-sm bg-gradient-to-tl from-blue-700 to-blue-500 p-2.5 text-white';
 			return route.path === r.path ? `${base} ${active}` : base;
 		}
 

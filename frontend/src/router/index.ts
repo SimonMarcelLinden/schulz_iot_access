@@ -1,28 +1,28 @@
 // src/router/index.ts
 
-import { createRouter, RouterView, type RouteRecordRaw, NavigationGuard } from "vue-router";
-import { routerConfig } from "@/router/config";
+import { createRouter, RouterView, type RouteRecordRaw, NavigationGuard } from 'vue-router';
+import { routerConfig } from '@/router/config';
 
-import { setRouteChange } from "@/_utils/composables/useRouteListener";
+import { setRouteChange } from '@/_utils/composables/use-route-listener';
 
 // Components
 
 // Layouts
-import BasisLayout from "@/layouts/basis.layout.vue";
-import BasisView from "@/views/basis/basis.view.vue";
+import BasisLayout from '@/layouts/basis.layout.vue';
+import BasisView from '@/views/basis/basis.view.vue';
 
 // Pages
-import Dashboard from "@/pages/dashboard/dashboard.vue";
+import Dashboard from '@/pages/dashboard/dashboard.vue';
 
-import LogFiles from "@/pages/LogFiles/log-files.vue";
-import SingleFile from "@/pages/LogFiles/single-file.vue";
+import LogFiles from '@/pages/log-files/log-files.vue';
+import SingleFile from '@/pages/log-files/single-file.vue';
 
-import Settings from "@/pages/Settings/settings.vue";
+import Settings from '@/pages/settings/settings.vue';
 
-import AboutUs from "@/pages/AboutUs/about-us.vue";
-import License from "@/pages/License/license.vue";
+import AboutUs from '@/pages/about-us/about-us.vue';
+import License from '@/pages/license/license.vue';
 
-import { terminalDefs } from "./terminal.routes";
+import { terminalDefs } from '@/router/terminal';
 
 // 1) Terminal-Kind-Routen erzeugen
 const terminalChildRoutes: RouteRecordRaw[] = terminalDefs.map((def) => ({
@@ -35,19 +35,19 @@ const terminalChildRoutes: RouteRecordRaw[] = terminalDefs.map((def) => ({
 		),
 	meta: {
 		title: def.title,
-		icon: "fas fa-terminal",
-		group: "Devices",
+		icon: 'fas fa-terminal',
+		group: 'Devices',
 	},
 }));
 
 // 2) Ein einziges Terminal-Group-Objekt
 const terminalGroup: RouteRecordRaw = {
-	path: "terminal", // relativ zur Root-Children-Routes
+	path: 'terminal', // relativ zur Root-Children-Routes
 	component: RouterView, // leeres <RouterView /> für die Kind-Komponenten
 	meta: {
-		title: "Terminal",
-		icon: "fas fa-terminal",
-		group: "Devices",
+		title: 'Terminal',
+		icon: 'fas fa-terminal',
+		group: 'Devices',
 		hidden: true,
 	},
 	children: terminalChildRoutes,
@@ -63,19 +63,19 @@ const terminalGroup: RouteRecordRaw = {
 
 export const errorRoutes: RouteRecordRaw[] = [
 	{
-		path: "/403",
+		path: '/403',
 		component: BasisView,
 		meta: {
-			title: "403 - Forbidden",
+			title: '403 - Forbidden',
 			hidden: true,
 		},
 	},
 	{
-		path: "/:catchAll(.*)",
-		name: "NotFound",
+		path: '/:catchAll(.*)',
+		name: 'NotFound',
 		component: BasisView,
 		meta: {
-			title: "404 - Page not found",
+			title: '404 - Page not found',
 			hidden: true,
 		},
 	},
@@ -83,55 +83,55 @@ export const errorRoutes: RouteRecordRaw[] = [
 
 export const constantRoutes: RouteRecordRaw[] = [
 	{
-		path: "/",
-		name: "Dashboard",
+		path: '/',
+		name: 'Dashboard',
 		component: Dashboard,
 		meta: {
-			title: "IoT Dashboard",
-			icon: "fas fa-home",
-			group: "",
+			title: 'IoT Dashboard',
+			icon: 'fas fa-home',
+			group: '',
 		},
 	},
 	terminalGroup,
 	{
-		path: "log",
-		name: "LogFiles",
+		path: 'log',
+		name: 'LogFiles',
 		component: LogFiles,
 		meta: {
-			title: "Log Files",
-			icon: "fas fa-file-alt",
-			group: "Settings",
+			title: 'Log Files',
+			icon: 'fas fa-file-alt',
+			group: 'Settings',
 		},
 	},
 	{
-		path: "settings",
-		name: "Settings",
+		path: 'settings',
+		name: 'Settings',
 		component: Settings,
 		meta: {
-			title: "Settings",
-			icon: "fas fa-cog",
-			group: "Settings",
+			title: 'Settings',
+			icon: 'fas fa-cog',
+			group: 'Settings',
 		},
 	},
 	{
-		path: "about-us",
-		name: "AboutUs",
+		path: 'about-us',
+		name: 'AboutUs',
 		component: AboutUs,
 		meta: {
-			title: "About Us",
-			icon: "fa-solid fa-users",
-			group: "Footer",
+			title: 'About Us',
+			icon: 'fa-solid fa-users',
+			group: 'Footer',
 			hidden: true,
 		},
 	},
 	{
-		path: "license",
-		name: "License",
+		path: 'license',
+		name: 'License',
 		component: License,
 		meta: {
-			title: "License",
-			icon: "fa-solid fa-file",
-			group: "Footer",
+			title: 'License',
+			icon: 'fa-solid fa-file',
+			group: 'Footer',
 			hidden: true,
 		},
 	},
@@ -139,12 +139,12 @@ export const constantRoutes: RouteRecordRaw[] = [
 
 export const dynamicRoutes: RouteRecordRaw[] = [
 	{
-		path: "log/:filename", // relativ
-		name: "SingleFile",
+		path: 'log/:filename', // relativ
+		name: 'SingleFile',
 		component: SingleFile,
 		meta: {
-			title: "Single Log File",
-			breadcrumb: { parent: "LogFiles" },
+			title: 'Single Log File',
+			breadcrumb: { parent: 'LogFiles' },
 			hidden: true,
 		},
 	},
@@ -152,11 +152,11 @@ export const dynamicRoutes: RouteRecordRaw[] = [
 
 export const developmentRoutes: RouteRecordRaw[] = [
 	{
-		path: "routes",
-		name: "RoutesPage",
-		component: () => import("@/pages/routes/routes.page.vue"),
+		path: 'routes',
+		name: 'RoutesPage',
+		component: () => import('@/pages/routes/routes.vue'),
 		meta: {
-			title: "Application Routes",
+			title: 'Application Routes',
 			hidden: true,
 			dev: true,
 		},
@@ -165,10 +165,10 @@ export const developmentRoutes: RouteRecordRaw[] = [
 
 export const routes: RouteRecordRaw[] = [
 	{
-		path: "/",
+		path: '/',
 		component: BasisLayout,
-		redirect: { name: "Dashboard" },
-		children: [...constantRoutes, ...dynamicRoutes, ...(process.env.NODE_ENV === "development" ? developmentRoutes : [])],
+		redirect: { name: 'Dashboard' },
+		children: [...constantRoutes, ...dynamicRoutes, ...(process.env.NODE_ENV === 'development' ? developmentRoutes : [])],
 	},
 	...errorRoutes,
 ];
@@ -184,8 +184,8 @@ export const routes: RouteRecordRaw[] = [
 export const router = createRouter({
 	history: routerConfig.history,
 	routes,
-	linkActiveClass: "active-link",
-	linkExactActiveClass: "exact-active-link",
+	linkActiveClass: 'active-link',
+	linkExactActiveClass: 'exact-active-link',
 });
 
 /**
